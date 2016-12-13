@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmlns:UML="href://org.omg/UML/1.3" xmi.version="1.1">
+    <XMI.header>
+        <XMI.metamodel xmi.name="UML" xmi.version="1.3"/>
+    </XMI.header>
+    <XMI.content>
+        <UML:Model name="PlantUML" xmi.id="model1">
+            <UML:Namespace.ownedElement>
+                <UML:Class name="TestClass" namespace="test" xmi.id="cl0001">
+                    <UML:Classifier.feature>
+                        <UML:Attribute name="scale : string" visibility="public" xmi.id="att01"/>
+                        <UML:Attribute name="threshold: int" visibility="protected" xmi.id="att01"/>
+                        <UML:Operation name="size(longlist : array)" visibility="public" xmi.id="att02"/>
+                        <UML:Operation name="longsize(verylonglist:array, second : float) : int" visibility="protected" xmi.id="att03"/>
+                    </UML:Classifier.feature>
+                </UML:Class>
+            </UML:Namespace.ownedElement>
+        </UML:Model>
+    </XMI.content>
+</XMI>

@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+
+<?php
+/**
+ * -- file description --
+ *
+ * @author Marko Krüger <plant2code@marko-krueger.de>
+ *
+ */
+
+require __DIR__ . '/vendor/autoload.php';
+
+include_once 'boot.php';
+
+use Plant2Code\ConvertCommand;
+use Symfony\Component\Console\Application;
+
+$app = new Application('plant2code');
+$convertCommand = new ConvertCommand();
+$app->add($convertCommand);
+
+$app->run();

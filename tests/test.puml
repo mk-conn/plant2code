@@ -1,0 +1,51 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class AbstractList {
+
+}
+abstract AbstractCollection
+
+interface ListInterface
+interface Collection
+
+class ListImpl {
+    #counter : int
+}
+
+namespace test {
+    class ListImpl {
+       +counter : string
+    }
+
+    namespace test2 {
+        class someOtherList
+    }
+}
+
+class Object {
+
+}
+
+ListImpl <|-- AbstractList
+Collection <|-- AbstractCollection
+
+test::ListImpl --|> AbstractCollection
+
+Collection <|- ListImpl
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class ArrayList {
+ #elementData : Object[]
+ +size(listimpl : array)
+}
+
+ArrayList o-- Object
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+@enduml
