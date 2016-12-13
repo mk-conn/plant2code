@@ -36,3 +36,10 @@ class Test {
     +update(arg1 : int, arg2 string)
 }
 ```
+
+
+### Thanks
+
+Thanks goes out to the plantuml developers who let me use the binary **plantuml.jar** which is distributed under LGPL.
+
+And finally another big thanks to the developers who implemented my wishes extremely fast!!!
