@@ -13,17 +13,23 @@ use Plant2Code\Language\AbstractNamespace;
 
 /**
  * Class PhpNamespace
+ *
  * @package Plant2Code\Language\Php
  */
 class PhpNamespace extends AbstractNamespace
 {
 
     /**
-     * Converts something like Class1.Class2 or Class1::Class2 into Class1\Class2
+     * Converts something like class1.class2 or
+     * class1::class2 into class1\class2
+     *
+     * @param $name
+     *
+     * @return string
      */
-    protected function correct()
+    public function setNameAttribute($name)
     {
-        $this->name = preg_replace('/[^a-zA-z0-9]+/', '\\', $this->name);
+        return preg_replace('/[^a-zA-z0-9]+/', '\\', $name);
     }
 
     /**

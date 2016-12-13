@@ -11,6 +11,7 @@ namespace Plant2Code\Language;
 
 /**
  * Class AbstractNamespace
+ *
  * @package Plant2Code\Language
  *
  * @property string $name
@@ -25,14 +26,10 @@ abstract class AbstractNamespace extends AbstractLanguage
      *
      * @param $name
      */
-    public function __construct($name)
+    public function __construct(string $name = null)
     {
         $this->name = $name;
-
-        $this->correct();
     }
-
-    abstract protected function correct();
 
     /**
      * @return mixed

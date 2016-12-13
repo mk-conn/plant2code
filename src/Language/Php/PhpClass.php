@@ -44,6 +44,8 @@ class PhpClass extends AbstractClass
 
     /**
      * @param $class
+     *
+     * @todo make addUse work
      */
     public function addUse($class)
     {
@@ -66,6 +68,14 @@ class PhpClass extends AbstractClass
         $this->attributes['implements'][] = $ns . $class->name;
 
         return $this;
+    }
+
+    /**
+     * @param AbstractClass $class
+     */
+    public function setUsesAttribute($class)
+    {
+
     }
 
     /**
