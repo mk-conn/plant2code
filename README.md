@@ -33,6 +33,6 @@ the required syntax for plant2code to work correctly is:
 class Test {
     #name : string
     
-    +update(arg1 : int, arg2 value)
+    +update(arg1 : int, arg2 string)
 }
 ```
