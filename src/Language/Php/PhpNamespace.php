@@ -19,7 +19,7 @@ class PhpNamespace extends AbstractNamespace
 {
 
     /**
-     * For now we assume that the namespace is separated by '.'
+     * Converts something like Class1.Class2 or Class1::Class2 into Class1\Class2
      */
     protected function correct()
     {
