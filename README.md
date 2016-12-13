@@ -42,4 +42,4 @@ class Test {
 
 Thanks goes out to the plantuml developers who let me use the binary **plantuml.jar** which is distributed under LGPL.
 
-And finally another big thanks to the developers who implemented my wishes extremely fast!!!
+And finally another big thanks to the developers who implemented my suggestions and wishes in no time very quick!
