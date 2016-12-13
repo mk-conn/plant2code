@@ -17,7 +17,7 @@ to develop in this project). Done.
 ### Running
 
 ```
-php plant2code:convert path/to/input.puml path/to/output/dir [language]
+php plant2code plant2code:convert path/to/input.puml path/to/output/dir [language]
 ```
 
 ### Tips
