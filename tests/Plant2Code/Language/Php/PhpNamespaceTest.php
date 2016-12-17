@@ -23,7 +23,15 @@ class PhpNamespaceTest extends TestCase
     public function testNamespaceOutput()
     {
         $ns = new PhpNamespace('User.Land');
+        $this->assertEquals('namespace User\\Land;', (string) $ns);
 
+        $ns = new PhpNamespace('User::Land');
+        $this->assertEquals('namespace User\\Land;', (string) $ns);
+
+        $ns = new PhpNamespace('User+Land');
+        $this->assertEquals('namespace User\\Land;', (string) $ns);
+
+        $ns = new PhpNamespace('User--Land');
         $this->assertEquals('namespace User\\Land;', (string) $ns);
     }
 }
