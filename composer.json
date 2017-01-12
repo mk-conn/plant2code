@@ -1,6 +1,6 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
+  "name": "mk-conn/plant2code",
+  "description": "Create basic code (classes, interfaces, etc.) from PlantUML class diagrams",
   "minimum-stability": "dev",
   "license": "proprietary",
   "authors": [
