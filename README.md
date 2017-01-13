@@ -20,7 +20,7 @@ to develop in this project). Done.
 php plant2code plant2code:convert path/to/input.puml path/to/output/dir [language] [root-ns]
 ```
 * **language**: optional target language - default is PHP
-* **root-ns**: root namespace - this will be prepend to the detected namespaces
+* **root-ns**: optional root namespace - this will be prepend to the detected namespaces
 
 ### Tips
 
