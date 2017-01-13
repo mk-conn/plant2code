@@ -40,13 +40,14 @@ class Php extends ComponentBuilder
     }
 
     /**
-     * @param $name
+     * @param string      $name
+     * @param string|null $rootNS
      *
      * @return PhpNamespace
      */
-    public function createNamespace($name)
+    public function createNamespace(string $name, string $rootNS = null): PhpNamespace
     {
-        return new PhpNamespace($name);
+        return new PhpNamespace($name, $rootNS);
     }
 
     /**

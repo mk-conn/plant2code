@@ -64,12 +64,13 @@ class PlantUmlConverter
         $srcFile = $input->getArgument('input');
         $this->outputDir = $input->getArgument('output');
         $this->language = $input->getArgument('language') ?: $this->language;
+        $rootNS = $input->getArgument('root-ns');
 
         if (!is_file($srcFile)) {
             throw new FileNotFoundException("PlantUml file $srcFile could not be found.");
         }
 
-        $this->parser = new Parser(file_get_contents($srcFile), $this->language);
+        $this->parser = new Parser(file_get_contents($srcFile), $this->language, $rootNS);
 
         if (!is_dir($this->outputDir)) {
             throw new FileNotFoundException("Output directory {$this->outputDir} does not exists.");
@@ -129,7 +130,7 @@ class PlantUmlConverter
     {
         $this->classes = $this->parser->parse();
 
-        $this->classes = $this->classes->map(function (&$item, $key) {
+        $this->classes = $this->classes->map(function (&$item) {
             $item['rendered'] = $this->renderer->setClass($item['class'])
                                                ->render();
             $item['meta']['folder'] = $this->outputDir . '/' . $item['meta']['folder'];
@@ -142,9 +143,9 @@ class PlantUmlConverter
 
 
     /**
-     * @return $this
+     * @return PlantUmlConverter
      */
-    public function write()
+    public function write() : PlantUmlConverter
     {
         $this->classes->each(function ($item, $key) {
 

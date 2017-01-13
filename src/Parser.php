@@ -12,6 +12,7 @@ namespace Plant2Code;
 use Illuminate\Support\Collection;
 use Plant2Code\Language\AbstractClass;
 use Plant2Code\Language\AbstractClassMethod;
+use Plant2Code\Language\AbstractClassProperty;
 use Plant2Code\Language\ComponentBuilder;
 use Plant2Code\Language\Factory;
 
@@ -30,7 +31,10 @@ class Parser
      * @var string
      */
     protected $language;
-
+    /**
+     * @var string
+     */
+    protected $rootNS;
     /**
      * @var Collection
      */
@@ -45,11 +49,13 @@ class Parser
      *
      * @param string $input
      * @param string $language
+     * @param string $rootNS
      */
-    public function __construct(string $input, string $language)
+    public function __construct(string $input, string $language, string $rootNS = null)
     {
         $this->input = $input;
         $this->language = $language;
+        $this->rootNS = $rootNS;
 
         $this->initComponentBuilder();
     }
@@ -68,10 +74,9 @@ class Parser
     /**
      * @return Collection
      */
-    public function parse()
+    public function parse(): Collection
     {
         $ext = $this->componentBuilder->getExtension();
-//        $nsSeparator = $this->componentBuilder->getNsSeparator();
 
         // avoiding namespace shizzle here.
         try {
@@ -111,11 +116,11 @@ class Parser
      *
      * @return AbstractClass
      */
-    private function parseClass(\DOMNode $classNode)
+    private function parseClass(\DOMNode $classNode): AbstractClass
     {
         $className = $classNode->getAttribute('name');
 
-        $namespace = $this->componentBuilder->createNamespace($classNode->getAttribute('namespace'));
+        $namespace = $this->componentBuilder->createNamespace($classNode->getAttribute('namespace'), $this->rootNS);
 
         $class = $this->componentBuilder->createClass();
         $class->name = $className;
@@ -148,7 +153,7 @@ class Parser
      *
      * @return Language\AbstractClassProperty
      */
-    private function parseProperty(\DOMElement $element)
+    private function parseProperty(\DOMElement $element): AbstractClassProperty
     {
         $nameAttr = explode(':', $element->getAttribute('name'));
         $visibility = $element->getAttribute('visibility');

@@ -26,7 +26,8 @@ class ConvertCommand extends Command
              ->setDescription('Creates PHP classes based on PlantUML description')
              ->addArgument('input', InputArgument::REQUIRED, 'The plantuml file')
              ->addArgument('output', InputArgument::REQUIRED, 'The output directory')
-             ->addArgument('language', InputArgument::OPTIONAL, 'The output language (defaults to PHP)');
+             ->addArgument('language', InputArgument::OPTIONAL, 'The output language (defaults to PHP)')
+             ->addArgument('root-ns', InputArgument::OPTIONAL, 'Root namespace');
 
     }
 

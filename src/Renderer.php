@@ -14,6 +14,7 @@ use Plant2Code\TemplateEngine\TemplateEngine;
 
 /**
  * Class Writer
+ *
  * @package Plant2Code
  */
 class Renderer
@@ -52,20 +53,7 @@ class Renderer
      */
     public function render()
     {
-        /** @var AbstractClass $class */
-
-            return $this->templateEngine->render('class', ['class' => $this->class]);
-
-            /*$namespace = (string)$class->namespace;
-            $namespaceDir = str_replace('\\', '/', $namespace);
-            $writeDir = $this->outputDir . '/' . $namespaceDir;
-
-            if (!is_dir($writeDir)) {
-//                mkdir($writeDir);
-            }
-
-            print $this->outputDir . PHP_EOL;
-            print $classFile . PHP_EOL;*/
+        return $this->templateEngine->render('class', ['class' => $this->class]);
     }
 
     /**

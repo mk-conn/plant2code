@@ -15,20 +15,25 @@ namespace Plant2Code\Language;
  * @package Plant2Code\Language
  *
  * @property string $name
+ * @property string $rootNS
  */
 abstract class AbstractNamespace extends AbstractLanguage
 {
-
-    protected static $fillable = ['name'];
+    /**
+     * @var array
+     */
+    protected static $fillable = ['name', 'rootNS'];
 
     /**
      * AbstractNamespace constructor.
      *
-     * @param $name
+     * @param string|null $name
+     * @param string|null $rootNS
      */
-    public function __construct(string $name = null)
+    public function __construct(string $name = null, string $rootNS = null)
     {
         $this->name = $name;
+        $this->rootNS = $rootNS;
     }
 
     /**

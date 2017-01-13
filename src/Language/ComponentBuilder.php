@@ -74,9 +74,10 @@ abstract class ComponentBuilder
     abstract public function createMethodArgument(string $name = null, string $type = null);
 
     /**
-     * @param $pumlNamespace
+     * @param string $pumlNamespace
+     * @param string $rootNS
      *
-     * @return mixed
+     * @return AbstractNamespace
      */
-    abstract public function createNamespace($pumlNamespace);
+    abstract public function createNamespace(string $pumlNamespace, string $rootNS);
 }

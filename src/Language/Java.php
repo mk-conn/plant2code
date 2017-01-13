@@ -37,7 +37,13 @@ class Java extends ComponentBuilder
         // TODO: Implement createMethodArgument() method.
     }
 
-    public function createNamespace($pumlNamespace)
+    /**
+     * @param string      $pumlNamespace
+     * @param string|null $rootNS
+     *
+     * @return AbstractNamespace|void
+     */
+    public function createNamespace(string $pumlNamespace, string $rootNS = null)
     {
         // TODO: Implement createNamespace() method.
     }

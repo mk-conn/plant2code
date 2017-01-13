@@ -12,6 +12,11 @@ namespace Plant2Code;
 use Plant2Code\Language\AbstractClass;
 use Tests\TestCase;
 
+/**
+ * Class ParserTest
+ *
+ * @package Plant2Code
+ */
 class ParserTest extends TestCase
 {
     protected $source;
@@ -56,6 +61,18 @@ class ParserTest extends TestCase
         $this->assertEquals('array', $class->methods[1]->arguments[0]->type);
         $this->assertEquals('second', $class->methods[1]->arguments[1]->name);
         $this->assertEquals('float', $class->methods[1]->arguments[1]->type);
+
+    }
+
+    public function testParsingWithRootNamespace()
+    {
+        $parser = new Parser($this->source, 'php', 'Unittest');
+        $classes = $parser->parse();
+        /** @var AbstractClass $class */
+        $class = $classes->first()['class'];
+
+        $this->assertEquals('namespace Unittest\\test;', (string)$class->namespace, 'Parsing with root namespace failed.');
+
 
     }
 

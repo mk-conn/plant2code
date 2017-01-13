@@ -37,6 +37,8 @@ class PhpNamespace extends AbstractNamespace
      */
     public function __toString()
     {
-        return "namespace {$this->name};";
+        $ns = $this->rootNS ? $this->rootNS . '\\' . $this->name : $this->name;
+
+        return "namespace {$ns};";
     }
 }
