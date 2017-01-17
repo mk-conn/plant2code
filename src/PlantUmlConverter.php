@@ -26,6 +26,7 @@ class PlantUmlConverter
      * @var string
      */
     protected $outputDir;
+
     /**
      * @var
      */
@@ -35,6 +36,7 @@ class PlantUmlConverter
      * @var Renderer
      */
     protected $renderer;
+
     /**
      * @var Collection
      */
@@ -62,9 +64,9 @@ class PlantUmlConverter
     {
         $this->output = $output;
         $srcFile = $input->getArgument('input');
-        $this->outputDir = $input->getArgument('output');
-        $this->language = $input->getArgument('language') ?: $this->language;
-        $rootNS = $input->getArgument('root-ns');
+        $this->outputDir = $input->getOption('output');
+        $this->language = $input->getOption('lang') ?: $this->language;
+        $rootNS = $input->getOption('root-ns');
 
         if (!is_file($srcFile)) {
             throw new FileNotFoundException("PlantUml file $srcFile could not be found.");
@@ -100,10 +102,11 @@ class PlantUmlConverter
      */
     protected function initRenderer(): PlantUmlConverter
     {
-        $templateEngine = new TwigEngine([
-            'templateDir'       => __DIR__ . '/templates/twig/' . $this->language,
-            'templateExtension' => 'twig'
-        ]);
+        $templateEngine = new TwigEngine(
+            [
+                'templateDir'       => __DIR__ . '/templates/twig/' . $this->language,
+                'templateExtension' => 'twig'
+            ]);
 
         $this->renderer = new Renderer(
             __DIR__ . '/templates',
@@ -130,13 +133,14 @@ class PlantUmlConverter
     {
         $this->classes = $this->parser->parse();
 
-        $this->classes = $this->classes->map(function (&$item) {
-            $item['rendered'] = $this->renderer->setClass($item['class'])
-                                               ->render();
-            $item['meta']['folder'] = $this->outputDir . '/' . $item['meta']['folder'];
+        $this->classes = $this->classes->map(
+            function (&$item) {
+                $item['rendered'] = $this->renderer->setClass($item['class'])
+                                                   ->render();
+                $item['meta']['folder'] = $this->outputDir . '/' . $item['meta']['folder'];
 
-            return $item;
-        });
+                return $item;
+            });
 
         return $this;
     }
@@ -145,19 +149,21 @@ class PlantUmlConverter
     /**
      * @return PlantUmlConverter
      */
-    public function write() : PlantUmlConverter
+    public function write(): PlantUmlConverter
     {
-        $this->classes->each(function ($item, $key) {
+        $this->classes->each(
+            function ($item, $key) {
 
-            $filename = $item['meta']['folder'] . '/' . $item['meta']['filename'];
-            if (!is_dir($item['meta']['folder'])) {
-                mkdir($item['meta']['folder']);
-            }
+                $filename = $item['meta']['folder'] . '/' . $item['meta']['filename'];
+                if (!is_dir($item['meta']['folder'])) {
+                    mkdir($item['meta']['folder']);
+                }
 
-            file_put_contents($filename, $item['rendered']);
+                file_put_contents($filename, $item['rendered']);
 
-            $this->output->writeln('<info>' . $item['meta']['folder'] . '/' . $item['meta']['filename'] . ' written.</info>');
-        });
+                $this->output->writeln(
+                    '<info>' . $item['meta']['folder'] . '/' . $item['meta']['filename'] . ' written.</info>');
+            });
 
         return $this;
     }
