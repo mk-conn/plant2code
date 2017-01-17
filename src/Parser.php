@@ -182,7 +182,7 @@ class Parser
         $name = $matches[1];
         $visibility = $meth->getAttribute('visibility');
         $type = null;
-        $arguments = null;
+        $arguments = [];
 
         if (isset($matches[2]) && trim($matches[2]) !== "") {
 

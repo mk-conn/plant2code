@@ -28,7 +28,6 @@ class ConvertCommand extends Command
              ->addArgument('output', InputArgument::REQUIRED, 'The output directory')
              ->addArgument('language', InputArgument::OPTIONAL, 'The output language (defaults to PHP)')
              ->addArgument('root-ns', InputArgument::OPTIONAL, 'Root namespace');
-
     }
 
     /**
@@ -36,16 +35,19 @@ class ConvertCommand extends Command
      * @param OutputInterface $output
      *
      * @return int|null|void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // generate xmi
         try {
             $puml = $input->getArgument('input');
+            $runPath = run_path();
             $fileInfo = pathinfo($puml);
 
             $output->writeln('<info>Creating XMI file.</info>');
-            $command = "java -jar plantuml.jar $puml -xmi:star";
+
+            $command = "java -jar $runPath/plantuml.jar $puml -xmi:star";
             system($command);
             $output->writeln('<info>Finished XMI creation.</info>');
 
@@ -54,10 +56,8 @@ class ConvertCommand extends Command
             $output->writeln('<info>Detecting classes and writing output...</info>');
             $converter = new PlantUmlConverter($input, $output);
             $converter->convertAndWrite();
-
         } catch (Exception $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
         }
-
     }
 }

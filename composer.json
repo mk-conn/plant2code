@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "php": ">=7.0",
     "illuminate/filesystem": "dev-master",
     "illuminate/support": "dev-master",
     "twig/twig": "1.9.*",
@@ -20,7 +21,7 @@
     "phpunit/phpunit": "5.7.*"
   },
   "bin": [
-
+    "bin/plant2code"
   ],
   "autoload": {
     "psr-4": {

@@ -11,18 +11,25 @@ It converts the plantuml class diagramm into XMI and creates the target language
 
 ## Installation
 
+### Global
+
+`$ composer global require mk-conn/plant2code=dev-master`
+
+### Somewhere in a folder of your choise 
+
 Clone or download this repository. Run `composer install --no-dev` from the root directory (omit the --no-dev option, if you intend 
 to develop in this project). Done.
 
-### Running
+## Running
 
+### From global
 ```
-php plant2code plant2code:convert path/to/input.puml path/to/output/dir [language] [root-ns]
+plant2code plant2code:convert path/to/input.puml path/to/output/dir [language] [root-ns]
 ```
 * **language**: optional target language - default is PHP
 * **root-ns**: optional root namespace - this will be prepend to the detected namespaces
 
-### Tips
+## Tips
 
 Although it is possible to write class properties and methods like this in plantuml:
 ```
@@ -40,7 +47,7 @@ class Test {
 ```
 
 
-### Thanks
+## Thanks
 
 Thanks goes out to the plantuml developers who let me use the binary **plantuml.jar** which is distributed under LGPL.
 
