@@ -13,21 +13,58 @@ It converts the plantuml class diagramm into XMI and creates the target language
 
 ### Global
 
-`$ composer global require mk-conn/plant2code=dev-master`
+Install:
+```
+$ composer global require mk-conn/plant2code=dev-master
+```
+
+Update:
+```
+$ composer global update mk-conn/plant2code
+```
 
 ### Somewhere in a folder of your choise 
 
 Clone or download this repository. Run `composer install --no-dev` from the root directory (omit the --no-dev option, if you intend 
 to develop in this project). Done.
 
+### Within a project
+In your composer.json:
+
+```
+"require": {
+    ...
+    "mk-conn/plant2code": "dev-master"
+  },
+```
 ## Running
 
 ### From global
 ```
-plant2code plant2code:convert path/to/input.puml path/to/output/dir [language] [root-ns]
+$ plant2code plant2code:convert path/to/input.puml --output="path/to/output/dir" [--lang="php"] [--root-ns="SomeNamespace"]
 ```
-* **language**: optional target language - default is PHP
-* **root-ns**: optional root namespace - this will be prepend to the detected namespaces
+
+* **--output** Optional output directory (must exists) where classes are written to. Defaults to the folder where 
+the *.puml input files is stored.
+* **--lang**: Optional target language - defaults to PHP
+* **--root-ns**: Optional root namespace - this will be prepend to the detected namespaces
+
+### From project directoy
+
+```
+path/to/plant2code $ bin/plant2code plant2code:convert path/to/input.puml --output="path/to/output/dir" [--lang="php"] [--root-ns="SomeNamespace"]
+```
+
+## Output
+
+Success:
+
+![Success](doc/plant2code_success.png)
+
+Failure:
+
+![Failure](doc/plant2code_failure.png)
+
 
 ## Tips
 
@@ -50,5 +87,4 @@ class Test {
 ## Thanks
 
 Thanks goes out to the plantuml developers who let me use the binary **plantuml.jar** which is distributed under LGPL.
-
-And finally another big thanks to the developers who implemented my suggestions and wishes in no time very quick!
+And another big thanks to the developers who implemented my suggestions and wishes in no time very quick!
