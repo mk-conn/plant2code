@@ -10,8 +10,6 @@
 
 $rootPath = dirname(__DIR__ . '../');
 
-require $rootPath . '/vendor/autoload.php';
-
 include_once $rootPath . '/boot.php';
 
 use Plant2Code\ConvertCommand;
