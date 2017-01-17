@@ -20,5 +20,6 @@ use Symfony\Component\Console\Application;
 $app = new Application('plant2code');
 $convertCommand = new ConvertCommand();
 $app->add($convertCommand);
+//$app->add(new Mmoreram\PHPFormatter\Command\UseSortCommand);
 
 $app->run();

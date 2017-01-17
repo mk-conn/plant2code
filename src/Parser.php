@@ -85,7 +85,7 @@ class Parser
 
             $nodelist = $xml->getElementsByTagName('Class');
             $length = $nodelist->length;
-
+            $nsSeparator = $this->componentBuilder->getNsSeparator();
             $this->classes = collect([]);
 
             for ($i = 0; $i < $length; $i++) {
@@ -94,10 +94,15 @@ class Parser
 
                 $class = $this->parseClass($classNode);
 
+                $folder = $nsSeparator ?
+                    str_replace($nsSeparator, '/', $class->namespace->name) :
+                    $class->namespace->name;
+                $folder = $this->rootNS ? $this->rootNS . '/' . $folder : $folder;
+
                 $this->classes->put($clid, [
                     'meta'  => [
                         'filename' => $class->name . $ext,
-                        'folder'   => $class->namespace->name,
+                        'folder'   => $folder,
                     ],
                     'class' => $class
                 ]);

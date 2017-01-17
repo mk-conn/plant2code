@@ -8,9 +8,10 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * -- file description --
+ * Convert command
  *
  * @author Marko Krüger <plant2code@marko-krueger.de>
  *
@@ -19,7 +20,7 @@ class ConvertCommand extends Command
 {
 
     /**
-     *
+     * Configure command
      */
     protected function configure()
     {
@@ -45,25 +46,73 @@ class ConvertCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // generate xmi
+
+        $io = new SymfonyStyle($input, $output);
+        $io->title('Convert puml to code');
+
         try {
+
+
             $puml = $input->getArgument('input');
             $runPath = run_path();
             $fileInfo = pathinfo($puml);
 
-            $output->writeln('<info>Creating XMI file.</info>');
+            $outputDir = $input->getOption('output');
+
+            if (!$outputDir) {
+                $outputDir = $fileInfo['dirname'];
+            }
+
+            $outputDir = $this->sanitizeOutputDir($outputDir);
+            $input->setOption('output', $outputDir);
+
+            $io->section('Creating XMI file.');
+//            $output->writeln('<info>Creating XMI file.</info>');
 
             $command = "java -jar $runPath/plantuml.jar $puml -xmi:star";
             system($command);
-            $output->writeln('<info>Finished XMI creation.</info>');
 
-            $input->setArgument('input', $fileInfo['dirname'] . '/' . $fileInfo['filename'] . '.xmi');
+            $io->text('Finished XMI creation.');
 
-            $output->writeln('<info>Detecting classes and writing output...</info>');
-            $converter = new PlantUmlConverter($input, $output);
+            $xmi = $runPath . '/' . $fileInfo['dirname'] . '/' . $fileInfo['filename'] . '.xmi';
+            $input->setArgument('input', $xmi);
+
+            $io->section('Detecting classes and writing output...');
+
+            $converter = new PlantUmlConverter($input, $output, $io);
             $converter->convertAndWrite();
-        } catch (Exception $e) {
-            $output->writeln('<error>' . $e->getMessage() . '</error>');
+//            /** @var StrictCommand $formatter */
+//            $formatter = $this->getApplication()
+//                              ->find('formatter:use:sort');
+//
+//            $formatterInput = new ArrayInput([
+//                'command'     => 'formatter:use:sort',
+//                'path'        => $outputDir,
+//                '--sort-type' => 'alph'
+//            ]);
+//
+//            $formatter->run($formatterInput, $output);
+
+            $io->success('Done converting.');
+
+        } catch (\Exception $e) {
+            $io->error($e->getMessage());
         }
+    }
+
+    /**
+     * @param $outputDir
+     *
+     * @return string
+     */
+    protected function sanitizeOutputDir($outputDir): string
+    {
+        if (!starts_with($outputDir, '/')) {
+            // relative path given - find out, where we are...
+            $runDir = run_path();
+            $outputDir = $runDir . '/' . $outputDir;
+        }
+
+        return $outputDir;
     }
 }
