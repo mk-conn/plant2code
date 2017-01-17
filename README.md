@@ -15,7 +15,7 @@ It converts the plantuml class diagramm into XMI and creates the target language
 
 Install:
 ```
-$ composer global require mk-conn/plant2code=dev-master
+$ composer global require mk-conn/plant2code
 ```
 
 Update:
