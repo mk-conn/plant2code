@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "89d9866ab1079d6f5f20f6c68c838e5f",
-    "content-hash": "8e3ee39433ad40f49083b43f941171b9",
+    "hash": "94fe7fbd8b72f88a20fea3391f4fa70d",
+    "content-hash": "19ef7e2610abd5f309509312938e5fe9",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "0ca3756e35d806e899392183d2b86e72669cd498"
+                "reference": "d7a674efbe09ec2321fe04d63f9bf00c6f5eb7ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/0ca3756e35d806e899392183d2b86e72669cd498",
-                "reference": "0ca3756e35d806e899392183d2b86e72669cd498",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/d7a674efbe09ec2321fe04d63f9bf00c6f5eb7ea",
+                "reference": "d7a674efbe09ec2321fe04d63f9bf00c6f5eb7ea",
                 "shasum": ""
             },
             "require": {
@@ -220,7 +220,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2017-01-13 18:19:47"
+            "time": "2017-01-17 14:21:52"
         },
         {
             "name": "mmoreram/php-formatter",
@@ -1605,12 +1605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "511c9a135ecd61b1719c92e239532f294c99e15a"
+                "reference": "be69bf34a6b3e8bac96e975fcf218c7c80e4b330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/511c9a135ecd61b1719c92e239532f294c99e15a",
-                "reference": "511c9a135ecd61b1719c92e239532f294c99e15a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/be69bf34a6b3e8bac96e975fcf218c7c80e4b330",
+                "reference": "be69bf34a6b3e8bac96e975fcf218c7c80e4b330",
                 "shasum": ""
             },
             "require": {
@@ -1679,7 +1679,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-02 15:53:34"
+            "time": "2017-01-17 15:30:31"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2313,6 +2313,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.0"
+    },
     "platform-dev": []
 }
