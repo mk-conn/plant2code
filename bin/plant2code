@@ -8,9 +8,7 @@
  *
  */
 
-$rootPath = dirname(__DIR__ . '../');
-
-require $rootPath . '/vendor/autoload.php';
+$rootPath = realpath(dirname(__DIR__ . '../'));
 
 include_once $rootPath . '/bootstrap.php';
 
