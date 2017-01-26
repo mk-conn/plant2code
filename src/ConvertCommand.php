@@ -55,6 +55,7 @@ class ConvertCommand extends Command
 
             $puml = $input->getArgument('input');
             $runPath = run_path();
+            $appPath = app_path();
             $fileInfo = pathinfo($puml);
 
             $outputDir = $input->getOption('output');
@@ -68,7 +69,7 @@ class ConvertCommand extends Command
 
             $io->section('Creating XMI file.');
 
-            $command = "java -jar $runPath/plantuml.jar $puml -xmi:star";
+            $command = "java -jar $appPath/plantuml.jar $puml -xmi:star";
             system($command);
 
             $io->text('Finished XMI creation.');

@@ -12,6 +12,11 @@ if (file_exists(__DIR__ . '/../../autoload.php')) {
     require __DIR__ . '/vendor/autoload.php';
 }
 
+function app_path()
+{
+    return __DIR__;
+}
+
 /**
  * @return string
  */
