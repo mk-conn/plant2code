@@ -67,7 +67,6 @@ class ConvertCommand extends Command
             $input->setOption('output', $outputDir);
 
             $io->section('Creating XMI file.');
-//            $output->writeln('<info>Creating XMI file.</info>');
 
             $command = "java -jar $runPath/plantuml.jar $puml -xmi:star";
             system($command);
@@ -107,6 +106,7 @@ class ConvertCommand extends Command
      */
     protected function sanitizeOutputDir($outputDir): string
     {
+
         if (!starts_with($outputDir, '/')) {
             // relative path given - find out, where we are...
             $runDir = run_path();
