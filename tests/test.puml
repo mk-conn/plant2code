@@ -23,6 +23,9 @@ namespace test {
     }
 }
 
+note "Some note text goes here" as TestNote
+        test.ListImpl .. TestNote
+
 class Object {
 
 }
