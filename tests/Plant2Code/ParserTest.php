@@ -19,15 +19,23 @@ use Tests\TestCase;
  */
 class ParserTest extends TestCase
 {
+    /**
+     * Input xmi
+     *
+     * @var string
+     */
     protected $source;
 
-    protected function setUp()
+    public function testOutputFolderWithRootNamespace()
     {
-        parent::setUp();
+        $parser = new Parser($this->source, 'php', 'UnitTest\\ParserTest');
+        $classes = $parser->parse();
+        /** @var AbstractClass $class */
+        $folder = $classes->first()['meta']['folder'];
+        $class = $classes->first()['class'];
 
-        $this->source = file_get_contents(test_path() . '/fixtures/parsetest.xmi');
+        $this->assertEquals('UnitTest/ParserTest/' . $class->namespace->name, $folder, 'Folder output with root namespace failed.');
     }
-
 
     public function testParserDetectsAllComponents()
     {
@@ -72,8 +80,14 @@ class ParserTest extends TestCase
         $class = $classes->first()['class'];
 
         $this->assertEquals('namespace Unittest\\test;', (string)$class->namespace, 'Parsing with root namespace failed.');
-
-
     }
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->source = file_get_contents(test_path() . '/fixtures/parsetest.xmi');
+    }
+
 
 }

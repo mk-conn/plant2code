@@ -19,25 +19,14 @@ use Plant2Code\Language\AbstractNamespace;
 class PhpNamespace extends AbstractNamespace
 {
 
-    /**
-     * Converts something like class1.class2 or
-     * class1::class2 into class1\class2
-     *
-     * @param $name
-     *
-     * @return string
-     */
-    public function setNameAttribute($name)
-    {
-        return preg_replace('/[^a-zA-z0-9]+/', '\\', $name);
-    }
+    protected static $delimiter = '\\';
 
     /**
      * @return string
      */
     public function __toString()
     {
-        $ns = $this->rootNS ? $this->rootNS . '\\' . $this->name : $this->name;
+        $ns = $this->rootNs ? $this->rootNs . self::$delimiter . $this->name : $this->name;
 
         return "namespace {$ns};";
     }

@@ -49,7 +49,7 @@ class TwigEngine extends Engine
     public function render(string $template, array $data): string
     {
 
-        $template = $this->sanitizeTemplateName($template);
+        $template = $this->adjustTemplateName($template);
 
         return $this->twig->render($template, $data);
     }

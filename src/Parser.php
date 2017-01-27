@@ -34,7 +34,7 @@ class Parser
     /**
      * @var string
      */
-    protected $rootNS;
+    protected $rootNs;
     /**
      * @var Collection
      */
@@ -49,13 +49,13 @@ class Parser
      *
      * @param string $input
      * @param string $language
-     * @param string $rootNS
+     * @param string $rootNs
      */
-    public function __construct(string $input, string $language, string $rootNS = null)
+    public function __construct(string $input, string $language, string $rootNs = null)
     {
         $this->input = $input;
         $this->language = $language;
-        $this->rootNS = $rootNS;
+        $this->rootNs = $rootNs;
 
         $this->initComponentBuilder();
     }
@@ -93,11 +93,9 @@ class Parser
                 $clid = $classNode->getAttribute('xmi.id');
 
                 $class = $this->parseClass($classNode);
-
-                $folder = $nsSeparator ?
-                    str_replace($nsSeparator, '/', $class->namespace->name) :
-                    $class->namespace->name;
-                $folder = $this->rootNS ? $this->rootNS . '/' . $folder : $folder;
+                $folder = $class->namespace->name;
+                $folder = $this->rootNs ? $this->rootNs . '/' . $folder : $folder;
+                $folder = $nsSeparator ? str_replace($nsSeparator, '/', $folder) : $folder;
 
                 $this->classes->put($clid, [
                     'meta'  => [
@@ -125,7 +123,7 @@ class Parser
     {
         $className = $classNode->getAttribute('name');
 
-        $namespace = $this->componentBuilder->createNamespace($classNode->getAttribute('namespace'), $this->rootNS);
+        $namespace = $this->componentBuilder->createNamespace($classNode->getAttribute('namespace'), $this->rootNs);
 
         $class = $this->componentBuilder->createClass();
         $class->name = $className;

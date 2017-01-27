@@ -64,7 +64,7 @@ class ConvertCommand extends Command
                 $outputDir = $fileInfo['dirname'];
             }
 
-            $outputDir = $this->sanitizeOutputDir($outputDir);
+            $outputDir = $this->adjustOutputDir($outputDir);
             $input->setOption('output', $outputDir);
 
             $io->section('Creating XMI file.');
@@ -105,7 +105,7 @@ class ConvertCommand extends Command
      *
      * @return string
      */
-    protected function sanitizeOutputDir($outputDir): string
+    protected function adjustOutputDir($outputDir): string
     {
 
         if (!starts_with($outputDir, '/')) {

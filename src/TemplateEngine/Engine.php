@@ -52,7 +52,7 @@ abstract class Engine implements TemplateEngine
      * @return string
      * @throws FileNotFoundException
      */
-    protected function sanitizeTemplateName($template)
+    protected function adjustTemplateName($template)
     {
         $templateName = $template . '.' . $this->templateExtension;
 
