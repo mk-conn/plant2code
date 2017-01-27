@@ -34,14 +34,14 @@ In your composer.json:
 ```
 "require": {
     ...
-    "mk-conn/plant2code": "dev-master"
+    "mk-conn/plant2code": "^v1.0.0"
   },
 ```
 ## Running
 
 ### From global
 ```
-$ plant2code plant2code:convert path/to/input.puml --output="path/to/output/dir" [--lang="php"] [--root-ns="SomeNamespace"]
+$ plant2code puml:convert path/to/input.puml --output="path/to/output/dir" [--lang="php"] [--root-ns="SomeNamespace"]
 ```
 
 * **--output** Optional output directory (must exists) where classes are written to. Defaults to the folder where 
@@ -52,7 +52,7 @@ the *.puml input files is stored.
 ### From project directoy
 
 ```
-path/to/plant2code $ bin/plant2code plant2code:convert path/to/input.puml --output="path/to/output/dir" [--lang="php"] [--root-ns="SomeNamespace"]
+path/to/plant2code $ bin/plant2code puml:convert path/to/input.puml --output="path/to/output/dir" [--lang="php"] [--root-ns="SomeNamespace"]
 ```
 
 ## Output

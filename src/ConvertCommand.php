@@ -24,7 +24,7 @@ class ConvertCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('plant2code:convert')
+        $this->setName('puml:convert')
              ->setDescription('Creates PHP classes based on PlantUML description')
              ->addArgument('input', InputArgument::REQUIRED, 'The plantuml file')
              ->addOption(
