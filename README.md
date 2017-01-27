@@ -83,6 +83,9 @@ class Test {
 }
 ```
 
+## Features not yet implemented
+* option to format code output
+* more languages (Java, Ruby, JavaScript)
 
 ## Thanks
 
