@@ -9,6 +9,10 @@
 namespace Plant2Code\TemplateEngine;
 
 
+use Twig_Environment;
+use Twig_Extension_Debug;
+use Twig_Loader_Filesystem;
+
 /**
  * Class TwigEngine
  *
@@ -17,7 +21,7 @@ namespace Plant2Code\TemplateEngine;
 class TwigEngine extends Engine
 {
     /**
-     * @var \Twig_Environment
+     * @var Twig_Environment
      */
     protected $twig;
     /**
@@ -34,9 +38,9 @@ class TwigEngine extends Engine
     {
         parent::__construct($options);
 
-        $loader = new \Twig_Loader_Filesystem($this->templateDir);
-        $this->twig = new \Twig_Environment($loader, ['debug' => true]);
-        $this->twig->addExtension(new \Twig_Extension_Debug);
+        $loader = new Twig_Loader_Filesystem($this->templateDir);
+        $this->twig = new Twig_Environment($loader, ['debug' => true]);
+        $this->twig->addExtension(new Twig_Extension_Debug);
     }
 
 

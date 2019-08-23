@@ -8,6 +8,7 @@
 
 namespace Plant2Code\TemplateEngine;
 
+use Exception;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 /**
@@ -28,20 +29,20 @@ abstract class Engine implements TemplateEngine
      *
      * @param array $options
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(array $options)
     {
         if (isset($options['templateDir'])) {
             $this->setTemplateDir($options['templateDir']);
         } else {
-            throw new \Exception('A template directory must be specified.');
+            throw new Exception('A template directory must be specified.');
         }
 
         if (isset($options['templateExtension'])) {
             $this->setTemplateExtension($options['templateExtension']);
         } else {
-            throw new \Exception('Template extension must be specified.');
+            throw new Exception('Template extension must be specified.');
         }
 
     }

@@ -9,7 +9,9 @@
 namespace Plant2Code\Language\Php;
 
 
-class PhpClassPropertyTest extends \PHPUnit_Framework_TestCase
+use Tests\TestCase;
+
+class PhpClassPropertyTest extends TestCase
 {
     /**
      *
@@ -23,6 +25,6 @@ class PhpClassPropertyTest extends \PHPUnit_Framework_TestCase
         $expected .= " */\n";
         $expected .= "protected \$username;";
 
-        $this->assertEquals($expected, (string)$property);
+        $this->assertEquals($expected, (string) $property);
     }
 }

@@ -9,12 +9,15 @@
 namespace Plant2Code;
 
 
+use DOMElement;
+use DOMNode;
 use Illuminate\Support\Collection;
 use Plant2Code\Language\AbstractClass;
 use Plant2Code\Language\AbstractClassMethod;
 use Plant2Code\Language\AbstractClassProperty;
 use Plant2Code\Language\ComponentBuilder;
 use Plant2Code\Language\Factory;
+use SimpleXMLElement;
 
 /**
  * Class Parser
@@ -80,7 +83,7 @@ class Parser
 
         // avoiding namespace shizzle here.
         try {
-            $xmi = new \SimpleXMLElement($this->input);
+            $xmi = new SimpleXMLElement($this->input);
             $xml = dom_import_simplexml($xmi);
 
             $nodelist = $xml->getElementsByTagName('Class');
@@ -115,11 +118,11 @@ class Parser
     }
 
     /**
-     * @param \DOMNode $classNode
+     * @param DOMNode $classNode
      *
      * @return AbstractClass
      */
-    private function parseClass(\DOMNode $classNode): AbstractClass
+    private function parseClass(DOMNode $classNode): AbstractClass
     {
         $className = $classNode->getAttribute('name');
 
@@ -152,11 +155,11 @@ class Parser
     }
 
     /**
-     * @param \DOMElement $element
+     * @param DOMElement $element
      *
      * @return Language\AbstractClassProperty
      */
-    private function parseProperty(\DOMElement $element): AbstractClassProperty
+    private function parseProperty(DOMElement $element): AbstractClassProperty
     {
         $nameAttr = explode(':', $element->getAttribute('name'));
         $visibility = $element->getAttribute('visibility');
@@ -173,11 +176,11 @@ class Parser
     }
 
     /**
-     * @param \DOMElement $meth
+     * @param DOMElement $meth
      *
      * @return AbstractClassMethod
      */
-    private function parseMethod(\DOMElement $meth): AbstractClassMethod
+    private function parseMethod(DOMElement $meth): AbstractClassMethod
     {
         $matches = [];
         preg_match('/(\w+)\((.*)\)(\s?:\s?(\w+))?/', $meth->getAttribute('name'), $matches);
@@ -208,9 +211,9 @@ class Parser
     }
 
     /**
-     * @param \DOMElement $dom
+     * @param DOMElement $dom
      */
-    private function parseGeneralizations(\DOMElement $dom)
+    private function parseGeneralizations(DOMElement $dom)
     {
         $generalizations = $dom->getElementsByTagName('Generalization');
         $nsSeparator = $this->componentBuilder->getNsSeparator();

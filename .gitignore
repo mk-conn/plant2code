@@ -137,3 +137,4 @@ crashlytics-build.properties
 fabric.properties
 
 /tests/test.xmi
+/.phpunit.result.cache

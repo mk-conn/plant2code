@@ -3,6 +3,8 @@
 namespace Plant2Code;
 
 
+use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,7 +44,7 @@ class ConvertCommand extends Command
      * @param OutputInterface $output
      *
      * @return int|null|void
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -95,7 +97,7 @@ class ConvertCommand extends Command
 
             $io->success('Done converting.');
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $io->error($e->getMessage());
         }
     }
