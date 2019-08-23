@@ -13,14 +13,8 @@ AbstractCollection <|- AbstractList
 AbstractList <|-- ArrayList
 
 class ArrayList {
-Object[] elementData
-size()
-}
-
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+    #Object[] elementData
+    +size()
 }
 
 @enduml

@@ -4,7 +4,7 @@
 namespace Plant2Code\Parser\Peg;
 
 
-class Method
+class Method extends Field
 {
     protected $accessType;
     protected $returnType;
@@ -13,11 +13,44 @@ class Method
 
     public function __construct($accessType, $returnType, $fieldName, $parameters)
     {
-        $this->accessType = $accessType;
-        $this->fieldName = $fieldName;
-        $this->returnType = $returnType;
+        parent::__construct($accessType, $returnType, $fieldName);
+
         $this->parameters = $parameters;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAccessType()
+    {
+        return $this->accessType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReturnType()
+    {
+        return $this->returnType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFieldName()
+    {
+        return $this->fieldName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+
 
 
 }

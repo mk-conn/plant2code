@@ -6,13 +6,13 @@ namespace Plant2Code\Parser\Peg;
 
 class Field
 {
-    protected $accessorType;
+    protected $accessType;
     protected $memberName;
     protected $returnType;
 
-    public function __construct($accessorType, $returnType, $memberName)
+    public function __construct($accessType, $returnType, $memberName)
     {
-        $this->accessorType = $accessorType;
+        $this->accessType = $accessType;
         $this->returnType = $returnType;
         $this->memberName = $memberName;
     }
@@ -20,15 +20,15 @@ class Field
     /**
      * @return mixed
      */
-    public function getAccessorType()
+    public function getAccessType()
     {
-        return $this->accessorType;
+        return $this->accessType;
     }
 
     /**
      * @return mixed
      */
-    public function getMemberName()
+    public function getName()
     {
         return $this->memberName;
     }
